@@ -1,0 +1,138 @@
+﻿@model CDNCRUD.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit User</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mail, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Mail, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Skill Sets", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @foreach (var skill in ViewBag.SkillSetList)
+            {
+                <div>
+                    <label>
+                        @{
+                            bool isSelected = false;
+                            if (ViewBag.SelectedSkills != null)
+                            {
+                                foreach (var selectedSkill in ViewBag.SelectedSkills)
+                                {
+                                    if (selectedSkill == skill.Value)
+                                    {
+                                        isSelected = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        <input type="checkbox" name="SkillSets" value="@skill.Value" @(isSelected ? "checked" : "")>
+                        @skill.Text
+                    </label>
+                </div>
+            }
+            @Html.ValidationMessage("SkillSets", "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Hobby", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @foreach (var hobby in ViewBag.HobbyList)
+            {
+                <div>
+                    <label>
+                        @{
+                            bool isSelected = false;
+                            if (ViewBag.SelectedHobby != null)
+                            {
+                                foreach (var selectedhobby in ViewBag.SelectedHobby)
+                                {
+                                    if (selectedhobby == hobby.Value)
+                                    {
+                                        isSelected = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        <input type="checkbox" name="Hobby" value="@hobby.Value" @(isSelected ? "checked" : "")>
+                        @hobby.Text
+                    </label>
+                </div>
+            }
+            @Html.ValidationMessage("Hobby", "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*<div class="form-group">
+        @Html.Label("Hobby", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                // Retrieve the selected hobby list from the ViewBag or Model
+                var selectedHobby = ViewBag.SelectedHobby as List<string> ?? new List<string>();
+            }
+            @foreach (var hobby in ViewBag.HobbyList)
+            {
+                <div>
+                    <label>
+                        @{
+                            bool isSelected = selectedHobby.Contains(hobby.Value);
+                        }
+                        <input type="checkbox" name="Hobby" value="@hobby.Value" @(isSelected ? "checked" : "")>
+                        @hobby.Text
+                    </label>
+                </div>
+            }
+            @Html.ValidationMessage("Hobby", "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

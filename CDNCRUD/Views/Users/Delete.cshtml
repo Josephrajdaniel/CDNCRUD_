@@ -1,0 +1,63 @@
+﻿@model CDNCRUD.Models.User
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete User</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillSets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillSets)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hobby)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hobby)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" }) |
+    <input type="submit" value="Delete" class="btn btn-danger" />
+</div>
+    }
+</div>

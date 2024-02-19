@@ -1,0 +1,60 @@
+﻿@model CDNCRUD.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Freelancer Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillSets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillSets)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hobby)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hobby)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+
+
+</p>
